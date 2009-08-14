@@ -1,0 +1,12 @@
+defaults
+delivery maildir ~/mail/in
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+tls_starttls off
+
+account gmail
+host pop.gmail.com
+user sam.a.g.carr@gmail.com
+port 995
+
+account default : gmail

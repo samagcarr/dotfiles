@@ -15,7 +15,6 @@ export OOO_FORCE_DESKTOP=gnome
 
 eval `dircolors -b ~/.dir_colors`
 
-
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pacman='pacman-color'

@@ -13,6 +13,7 @@ import XMonad.Layout.IM
 import XMonad.Layout.Spacing
 
 import XMonad.Util.Run
+import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
 
 import Data.Ratio ((%))
 import Graphics.X11
@@ -34,6 +35,18 @@ main = do
 		, logHook = dynamicLogWithPP (prettyPrint h)
 		, layoutHook = layoutHook'
 		, manageHook = manageHook' <+> manageDocks }
+		`additionalKeysP`
+		[ ("M-p", spawn "gmrun")
+		, ("M-x f", spawn "firefox")
+		, ("M-x n", spawn "nautilus --no-desktop")
+		, ("M-x u", spawn "urxvt")
+		, ("M-x a", spawn "abiword")
+		, ("M-x e", spawn "easytag")
+		, ("M-x p", spawn "pidgin")
+		, ("M-x l", spawn "lxappearance")
+		, ("M-x c", spawn "gcolor2")
+		, ("M-x g", spawn "gucharmap") ]
+
 
 layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat
 			$ smartBorders (resizableTile ||| Mirror resizableTile ||| Full)

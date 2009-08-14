@@ -1,0 +1,29 @@
+set mbox_type=Maildir
+set folder=$HOME/mail
+set spoolfile=+in
+set header_cache=~/.mutt/header_cache
+set message_cachedir="~/.mutt/message_cache"
+set realname="Sam Carr"
+set record="+sent"
+set postponed="+draft"
+set hdr_format="%4C %Z %{%m/%d} %-15.15F (%4c) %s" # format of the index
+set include
+set reply_to
+set sendmail="/usr/bin/msmtp"
+set from="sam.a.g.carr@gmail.com"
+mailboxes "+in" "+fb" "+old"
+set mail_check          = 0                             # check for mail always
+set delete                                              # don't ask, just do
+unset confirmappend                                     # don't ask, just do!
+set quit                                                # don't ask, just do!!
+set sort                = threads                       # like gmail 
+set sort_re                                             # thread based on reply_regexp
+set pager_index_lines   = 8                             # show 8 messages when in pager
+set pager_context       = 5                             # show five lines when skipping in pager
+set pager_stop                                          # don't go to next message automatically
+set menu_scroll                                         # scroll in menus 
+set smart_wrap                                          # don't split words
+set tilde                                               # show tildes like in vim
+unset markers                                           # no ugly plus signs
+
+source ~/.mutt/colors

@@ -1,0 +1,12 @@
+set bell-style none
+
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+#set show-all-if-ambiguous on
+
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+"\t": menu-complete
+Space: magic-space

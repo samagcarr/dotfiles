@@ -1,0 +1,14 @@
+"mpc toggle" 
+  XF86AudioPlay
+
+"mpc next"
+  XF86AudioNext
+
+"mpc prev"
+  XF86AudioPrev
+
+"amixer set Master 2dB+ unmute"
+  XF86AudioRaiseVolume
+
+"amixer set Master 2dB- unmute"
+  XF86AudioLowerVolume

@@ -1,0 +1,17 @@
+#!/bin/gawk -f
+
+function clean() {
+    $1=$2=""
+    gsub(/.* ACTION/, "$3 ")
+    gsub(/.*-!-.*/, "")
+    gsub(/^[ \t]+|[ \t]+$/,"")
+    gsub(/^<.*?>/, "\033[1;31m & \033[0m")
+}
+
+function del(ln) {
+    if (NF > 0){
+        print
+    }
+}
+
+del(clean())

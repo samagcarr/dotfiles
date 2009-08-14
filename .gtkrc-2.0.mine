@@ -1,0 +1,5 @@
+gtk-button-images=0
+gtk-menu-images=0
+gtk-can-change-accels=1
+gtk-key-theme-name = "Emacs"
+gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR

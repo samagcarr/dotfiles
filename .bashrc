@@ -1,7 +1,7 @@
 #!/bin/bash
 [ -z "$PS1" ] && return
 
-PATH="~/bin:$PATH"
+PATH="/home/scarr/bin:$PATH"
 
 shopt -s cdspell
 shopt -s dotglob

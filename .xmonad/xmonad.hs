@@ -3,7 +3,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.XPropManage
+import XMonad.Hooks.Place
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutHints
@@ -19,7 +19,6 @@ import Data.Ratio ((%))
 import Graphics.X11
 import System.Exit
 import System.IO
-import Foreign.C.Types (CLong)
 
 import qualified XMonad.StackSet as W
  
@@ -31,12 +30,12 @@ main = do
 		, borderWidth = 4
 		, normalBorderColor = "#4d4d4d"
 		, focusedBorderColor = "#1994d1"
-		, workspaces = [ "term", "irc", "web", "chat", "other", "6", "7", "8", "9" ]
+		, workspaces = [ "term", "web", "chat", "other", "5", "6", "7", "8", "9" ]
 		, logHook = dynamicLogWithPP (prettyPrint h)
 		, layoutHook = layoutHook'
-		, manageHook = manageHook' <+> manageDocks }
+		, manageHook = placeHook simpleSmart <+> manageHook' <+> manageDocks }
 		`additionalKeysP`
-		[ ("M-p", spawn "gmrun")
+		[ ("M-p", spawn "dmenu_run -fn 'MonteCarlo-19 ' -nb '#000' -nf '#777' -p '>' -sb '#000' -sf '#fff'")
 		, ("M-x f", spawn "firefox")
 		, ("M-x n", spawn "nautilus --no-desktop")
 		, ("M-x u", spawn "urxvt")
@@ -45,7 +44,8 @@ main = do
 		, ("M-x p", spawn "pidgin")
 		, ("M-x l", spawn "lxappearance")
 		, ("M-x c", spawn "gcolor2")
-		, ("M-x g", spawn "gucharmap") ]
+		, ("M-x g", spawn "gucharmap")
+		, ("M-w", placeFocused simpleSmart) ]
 
 
 layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat

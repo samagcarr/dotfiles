@@ -10,10 +10,12 @@ import XMonad.Layout.LayoutHints
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
-import XMonad.Layout.Spacing
+import XMonad.Layout.Reflect
+import XMonad.Layout.Named
 
 import XMonad.Util.Run
 import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
+import XMonad.Util.Loggers
 
 import Data.Ratio ((%))
 import Graphics.X11
@@ -27,52 +29,53 @@ main = do
 	xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
 		{ modMask = mod4Mask
 		, terminal = "urxvt"
-		, borderWidth = 4
-		, normalBorderColor = "#4d4d4d"
-		, focusedBorderColor = "#1994d1"
+		, normalBorderColor = "#A9A9A9"
+		, focusedBorderColor = "#74DE73"
 		, workspaces = [ "term", "web", "chat", "other", "5", "6", "7", "8", "9" ]
 		, logHook = dynamicLogWithPP (prettyPrint h)
 		, layoutHook = layoutHook'
-		, manageHook = placeHook simpleSmart <+> manageHook' <+> manageDocks }
+		, manageHook = manageDocks <+> placeHook simpleSmart <+> manageHook' }
 		`additionalKeysP`
-		[ ("M-p", spawn "dmenu_run -fn 'MonteCarlo-19 ' -nb '#000' -nf '#777' -p '>' -sb '#000' -sf '#fff'")
+		[ ("M-p", spawn dmenuCmd)
 		, ("M-x f", spawn "firefox")
 		, ("M-x n", spawn "nautilus --no-desktop")
 		, ("M-x u", spawn "urxvt")
-		, ("M-x a", spawn "abiword")
 		, ("M-x e", spawn "easytag")
 		, ("M-x p", spawn "pidgin")
+		, ("M-x b", spawn "nitrogen ~/pics/Backgrounds")
 		, ("M-x l", spawn "lxappearance")
 		, ("M-x c", spawn "gcolor2")
-		, ("M-x g", spawn "gucharmap")
 		, ("M-w", placeFocused simpleSmart) ]
 
 
-layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat
+layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat2
 			$ smartBorders (resizableTile ||| Mirror resizableTile ||| Full)
 				where
 					resizableTile = ResizableTall nmaster delta ratio []
 					nmaster = 1
 					ratio = toRational (2/(1+sqrt(5)::Double))
 					delta = 3/100
-					chat = withIM (1%7) (Role "buddy_list") resizableTile
+					chat = noBorders $ withIM (1%8) (Role "buddy_list") $ reflectHoriz $ withIM (3%8) (ClassName "Gwibber") resizableTile
+					chat2 = named "IM" chat
 
-statusBar' = "dzen2 -x '0' -y '0' -h '16' -w 1600 -ta l -fg '#777777' -bg '#000000' -fn 'MonteCarlo-10'"
+statusBar' = "dzen2 -x '0' -y '0' -h '16' -w 1400 -ta l -fg '#777777' -bg '#000000' -fn 'MonteCarlo-10'"
+dmenuCmd = "dmenu_run -nb '#000' -nf '#777' -p '»' -sb '#000' -sf '#fff' -w 150 -l 25 -c -xs -rs -ni -x 1 -y 17"
 
 prettyPrint h = defaultPP
-	{ ppCurrent = wrap "^fg(#ffffff)" "^fg()^p()" --Wrap
+	{ ppCurrent = wrap "^fg(#ffffff)" "^fg()^p()"
 	, ppHidden = wrap "" ""
 	, ppHiddenNoWindows = const ""
 	, ppUrgent = wrap "^fg(#1994d1)" "^fg()^p()"
 	, ppSep = " "
 	, ppWsSep = " "
+	, ppExtras = [ maildirUnread "~/mail/in", maildirNew "~/mail/in" ]
 	, ppTitle = dzenColor "#ffffff" ""
 	, ppLayout = dzenColor ("#1994d1") "" .
 		(\x -> case x of
 		"Hinted Full" -> "[]"
 		"Hinted ResizableTall" -> "|="
 		"Hinted Mirror ResizableTall" -> "TT"
-		"Hinted IM ResizableTall" -> "IM"
+		"Hinted IM" -> "IM"
 		_ -> x )
 	, ppOutput = hPutStrLn h }
 
@@ -84,6 +87,6 @@ manageHook' = composeAll .concat $
 	, [className =? b	--> doF (W.shift "web") | b <- myBrowse] ]
 	where
 		myOther = [ "Gimp", "Nitrogen", "Gucharmap", "Transmission", "Lxappearance", "Osmo" ]
-		myOtherFloats = [ "Downloads", "Firefox Preferences", "Save As...", "Send file", "Open", "File Transfers"]
-		myIM = [ "Pidgin" ]
+		myOtherFloats = [ "Downloads", "Firefox Preferences", "Save As...", "Send file", "Open", "File Transfers" ]
+		myIM = [ "Pidgin", "Gwibber" ]
 		myBrowse = [ "Firefox" ]

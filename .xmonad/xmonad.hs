@@ -3,7 +3,6 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.Place
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutHints
@@ -28,27 +27,21 @@ main = do
 	h <- spawnPipe statusBar'
 	xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
 		{ modMask = mod4Mask
-		, terminal = "urxvt"
+		, terminal = "urxvtc"
 		, normalBorderColor = "#A9A9A9"
 		, focusedBorderColor = "#74DE73"
-		, workspaces = [ "term", "web", "chat", "other", "5", "6", "7", "8", "9" ]
+		, workspaces = map show [1..9]
 		, logHook = dynamicLogWithPP (prettyPrint h)
 		, layoutHook = layoutHook'
-		, manageHook = manageDocks <+> placeHook simpleSmart <+> manageHook' }
+		, manageHook = manageDocks <+> manageHook' }
 		`additionalKeysP`
 		[ ("M-p", spawn dmenuCmd)
-		, ("M-x f", spawn "firefox")
 		, ("M-x n", spawn "nautilus --no-desktop")
-		, ("M-x u", spawn "urxvt")
-		, ("M-x e", spawn "easytag")
-		, ("M-x p", spawn "pidgin")
 		, ("M-x b", spawn "nitrogen ~/pics/Backgrounds")
-		, ("M-x l", spawn "lxappearance")
-		, ("M-x c", spawn "gcolor2")
-		, ("M-w", placeFocused simpleSmart) ]
+		, ("M-x c", spawn "gcolor2") ]
 
 
-layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat2
+layoutHook' = avoidStruts $ layoutHints $ onWorkspace "3" chat2
 			$ smartBorders (resizableTile ||| Mirror resizableTile ||| Full)
 				where
 					resizableTile = ResizableTall nmaster delta ratio []
@@ -59,16 +52,15 @@ layoutHook' = avoidStruts $ layoutHints $ onWorkspace "chat" chat2
 					chat2 = named "IM" chat
 
 statusBar' = "dzen2 -x '0' -y '0' -h '16' -w 1400 -ta l -fg '#777777' -bg '#000000' -fn 'MonteCarlo-10'"
-dmenuCmd = "dmenu_run -nb '#000' -nf '#777' -p '»' -sb '#000' -sf '#fff' -w 150 -l 25 -c -xs -rs -ni -x 1 -y 17"
+dmenuCmd = "dmenu_run -nb '#000' -nf '#777' -p '»' -sb '#000' -sf '#fff' -w 250 -l 25 -c -xs -rs -ni -x 1 -y 17 -fn 'MonteCarlo:size=1-'"
 
 prettyPrint h = defaultPP
-	{ ppCurrent = wrap "^fg(#ffffff)" "^fg()^p()"
-	, ppHidden = wrap "" ""
+	{ ppCurrent = dzenColor "#ffffff" "#71A2E7" . wrap " " " "
+	, ppHidden = wrap " " " "
 	, ppHiddenNoWindows = const ""
-	, ppUrgent = wrap "^fg(#1994d1)" "^fg()^p()"
+	, ppUrgent = dzenColor "#ffffff" "#003277" . dzenStrip
 	, ppSep = " "
-	, ppWsSep = " "
-	, ppExtras = [ maildirUnread "~/mail/in", maildirNew "~/mail/in" ]
+	, ppWsSep = ""
 	, ppTitle = dzenColor "#ffffff" ""
 	, ppLayout = dzenColor ("#1994d1") "" .
 		(\x -> case x of
@@ -81,10 +73,10 @@ prettyPrint h = defaultPP
 
 manageHook' = composeAll .concat $
 	[ [className =? f	--> doFloat | f <- myOther]
-	, [className =? o	--> doF (W.shift "other") | o <- myOther]
+	, [className =? o	--> doF (W.shift "4") | o <- myOther]
 	, [title     =? t	--> doFloat | t <- myOtherFloats]
-	, [className =? i	--> doF (W.shift "chat") | i <- myIM]
-	, [className =? b	--> doF (W.shift "web") | b <- myBrowse] ]
+	, [className =? i	--> doF (W.shift "3") | i <- myIM]
+	, [className =? b	--> doF (W.shift "2") | b <- myBrowse] ]
 	where
 		myOther = [ "Gimp", "Nitrogen", "Gucharmap", "Transmission", "Lxappearance", "Osmo" ]
 		myOtherFloats = [ "Downloads", "Firefox Preferences", "Save As...", "Send file", "Open", "File Transfers" ]

@@ -31,26 +31,72 @@ URxvt*boldFont:	xft:MonteCarlo:pixelsize=11
 
 #Colors
 *foreground:	white
-*background:	black
-*color0:	rgb:00/00/00
-*color1:	rgb:98/56/5e
-*color2:	rgb:66/82/5d
-*color3:	rgb:96/91/76
-*color4:	rgb:4d/65/85
-*color5:	rgb:96/73/95
-*color6:	rgb:5f/7f/7b
-*color7:	rgb:b3/b3/b3
-*color8:	rgb:73/73/73
-*color9:	rgb:cf/a3/a9
-*color10:	rgb:ca/f7/bb
-*color11:	rgb:ff/f8/bc
-*color12:	rgb:83/a3/be
-*color13:	rgb:bb/a9/cf
-*color14:	rgb:96/cc/cc
-*color15:	rgb:ff/ff/ff
+*background:	#383838
+#*color0:	rgb:00/00/00
+#*color1:	rgb:98/56/5e
+#*color2:	rgb:66/82/5d
+#*color3:	rgb:96/91/76
+#*color4:	rgb:4d/65/85
+#*color5:	rgb:96/73/95
+#*color6:	rgb:5f/7f/7b
+#*color7:	rgb:b3/b3/b3
+#*color8:	rgb:73/73/73
+#*color9:	rgb:cf/a3/a9
+#*color10:	rgb:ca/f7/bb
+#*color11:	rgb:ff/f8/bc
+#*color12:	rgb:83/a3/be
+#*color13:	rgb:bb/a9/cf
+#*color14:	rgb:96/cc/cc
+#*color15:	rgb:ff/ff/ff
 
 XFontSel*menu*showUnselectable: true
 XFontSel*MenuButton.shadowWidth: 0
 XFontsel*Toggle*ToggleStyle: check
 XFontsel*MenuButton*Justify:    left
 XFontsel*MenuButton*MenuButtonStyle: select
+
+
+!--[Colours]--!
+URxvt*cursorColor: #FFAF00
+ 
+! black
+URxvt*color0: #000000
+URxvt*color8: #999999
+ 
+! red
+URxvt*color1: #BD484A
+URxvt*color9: #F55D60
+ 
+! green
+URxvt*color2: #66994E
+URxvt*color10: #93DB6F
+ 
+! yellow
+URxvt*color3: #C4A043
+URxvt*color11: #F0C452
+ 
+! blue
+URxvt*color4: #567B94
+URxvt*color12: #7CB2D6
+ 
+! magenta
+URxvt*color5: #BB88DD
+URxvt*color13: #D7AFD7
+ 
+! cyan
+URxvt*color6: #00BBDD
+URxvt*color14: #0DEBFF
+ 
+! white
+URxvt*color7: #C7C7C7
+URxvt*color15: #D9D9D9
+! {{{ xmessage
+Xmessage*background: #3F3F3F
+Xmessage*foreground: #F0DFAF
+Xmessage*form.*.shapeStyle: rectangle
+Xmessage*Scrollbar.width: 1
+Xmessage*Scrollbar.borderWidth: 0
+Xmessage.form.message.Scroll: WhenNeeded
+Xmessage*Buttons: Quit
+Xmessage*defaultButton: Quit
+! }}}

@@ -1,27 +1,40 @@
 #!/bin/bash
+# CHECK FOR INTERACTIVE SHELL
 [ -z "$PS1" ] && return
 
+# SET DIRECTORY LISTING COLORS
+eval `dircolors -b ~/.dir_colors`
+
+# SET PATH
 PATH="/home/scarr/bin:$PATH"
 
+# MISC OPTIONS
 shopt -s cdspell
 shopt -s dotglob
 shopt -s extglob
 shopt -s histappend
 shopt -s checkwinsize
 
-export EDITOR="vim"
-export BROWSER="firefox"
+# EXPORT ENVIRONMENT VARIABLES
+export EDITOR='vim'
+export VISUAL='vim'
+export BROWSER='firefox'
 export OOO_FORCE_DESKTOP=gnome
 
-eval `dircolors -b ~/.dir_colors`
 
+#ALIASES
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pacman='pacman-color'
 alias slurpy='slurpy -c'
+alias updaterepo='repo-add ~/pkg/sagc.db.tar.gz ~/pkg/*.pkg.tar.gz &> /dev/null'
+alias mk='makepkg -fsi'
+alias mkc='makepkg -c'
 
+# PROMPT
 PS1='\[\e[1;36m\]\w \[\e[0m\]'
 
+# COLORED MAN PAGES
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;34m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -30,6 +43,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# CONSOLE COLORS
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0000000" #black
     echo -en "\e]P8555753" #darkgrey
@@ -50,6 +64,7 @@ if [ "$TERM" = "linux" ]; then
     clear # bring us back to default input colours
 fi
 
+# FUNCTIONS
 ircread() { 
   tail -f /home/scarr/irc/irc.$1.net/\#$2/out | ircc
 }

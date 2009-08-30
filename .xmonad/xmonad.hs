@@ -48,7 +48,7 @@ layoutHook' = avoidStruts $ layoutHints $ onWorkspace "3" chat2
 					nmaster = 1
 					ratio = toRational (2/(1+sqrt(5)::Double))
 					delta = 3/100
-					chat = noBorders $ withIM (1%8) (Role "buddy_list") $ reflectHoriz $ withIM (3%8) (ClassName "Gwibber") resizableTile
+					chat = noBorders $ withIM (1%8) (Role "contact_list") $ reflectHoriz $ withIM (3%8) (ClassName "Gwibber") resizableTile
 					chat2 = named "IM" chat
 
 statusBar' = "dzen2 -x '0' -y '0' -h '16' -w 1400 -ta l -fg '#777777' -bg '#000000' -fn 'MonteCarlo-10'"

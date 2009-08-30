@@ -1,0 +1,99 @@
+Name:			Charles Kovacs
+Corporation:	Western Federation
+Division:		Valkyries
+Languages:		English, Military Sign, Spanish, Russian
+
+Level:		2
+XP:			12
+Total XP:	39
+
+Rank:			4
+Rank Points:	75
+
+Strength:		8
+Perception:		9
+Endurance:		8
+Agility:		7 (5)
+Reflexes:		7
+Intelligence:	5
+Presence:		5
+
+Conviction Points:	1 (4)
+Total HP:			36
+Shield Type:		Heavy Field
+Shield EMPS:		20
+Shield Total:		30
+Sheild Current:		
+Speed:				20m/round
+
+Arts and Culture:			/
+Assess Tech:				3
+Athletics:					3
+Attitude:					3
+Business:					1
+Close Combat:				2
+Comp/AI:					1
+Corporate Knowledge:		2
+Crime:						4
+Cybernetics and Robotics:	/
+Drive:						5
+Heavy Firearms:				5
+Light Firearms:				6
+Looking Good:				1
+Lying and Acting:			/
+Mechtronics:				5
+Medicine:					/
+Observation:				4
+Pilot:						4
+Psychology:					/
+Science:					/
+Stealth:					1
+Street Culture:				2
+Support Weapons:			7
+Tactical Firearms:			10
+
+Registered Credits:	1000
+Slip Credits:		0
+Expense Account:	1000
+
+Trainings:	Mastered Weapon (Shotgun), Jury-Rigging, Dual Weapons (Tactical)
+Contacts:	Captain Steel (10), Richard Bergman (3)
+Licenses:	Heavy, Light, Tactical Firearms, Law Enforcement, Offensive Equipment 1, 2, Traffic, Vehicle (Military)
+
+Weapons:
+	Shotgun:
+		Action Total:	19, 23 when in close combat
+		Damage:			2d12, 3d12 mashing when within 5 meters.
+		Defense:		/
+		Rate:			1
+		Condition:		14
+		EMPS:			/
+	Black Cougar:
+		Action Total:	15
+		Damage:			1d10
+		Defense:		/
+		Rate:			3
+		Condition:		14
+		EMPS:			/
+	Knife:
+		Action Total:	7
+		Damage:			1d4 + 8
+		Defense:		2
+		Rate:			3
+		Condition:		14
+		EMPS:			/
+
+Armor:
+	Light Combat Armor: 2
+	Combat Helmet:		1
+	Reinforced Clothes:	1
+	4 Armor Plates:		4
+	Total:				8
+
+Other Equipment:
+PDA
+Communications Device
+Handcuffs
+ID Scanner
+ID Badge
+IV Medpack x 10
